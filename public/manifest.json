@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Fundraiser",
+  "name": "Fundraiser for your Funding",
   "icons": [
     {
       "src": "favicon.ico",
