@@ -20,7 +20,7 @@ class Main extends React.Component {
                     </Row>
                     <Row>
                         <hr />
-                        <ShareButtons />
+                        <ShareButtons sharetext={this.props.sharetext} />
                     </Row>
                 </Grid>
             </div>

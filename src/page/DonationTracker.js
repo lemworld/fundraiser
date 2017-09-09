@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './DonationTracker.css';
 
 class DonationTracker extends React.Component {
@@ -13,7 +14,9 @@ class DonationTracker extends React.Component {
             <div className="tracker">
                 <div className="raisedBalance">${this.balance.toLocaleString()}</div>
                 <div className="raisedSoFarText">Raised from {this.donors.toLocaleString()} donors</div>
-                <button className="donate">Donate Now</button>
+                <Link to="/donate">
+                    <button className="donate">Donate Now</button>
+                </Link>
             </div>
         );
     }

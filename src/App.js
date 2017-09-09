@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 
@@ -9,6 +10,7 @@ import Main from './page/Main';
 import Footer from './page/Footer';
 
 // Stripe Components
+import TallyPanel from './stripe/TallyPanel';
 import {StripeProvider} from 'react-stripe-elements';
 import ChargeForm from './stripe/ChargeForm';
 
@@ -23,15 +25,55 @@ const Story = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitu
 
     Pellentesque dictum, libero vel venenatis placerat, tellus lacus vestibulum purus, non dictum eros orci sit amet sapien. Morbi ullamcorper augue nec pretium fermentum. Praesent cursus dignissim neque ut ornare. Phasellus diam orci, ornare a sapien at, iaculis luctus felis. Proin vehicula id enim at ultrices. Nulla at urna non purus eleifend pulvinar. Vestibulum rhoncus leo augue, quis malesuada dui convallis ac.
 `;
+const shareText = "Check this out: " + HeroTitle;
 
-class App extends Component {
+class Home extends Component {
     render() {
         return (
             <div>
                 <Hero title={HeroTitle} heroimage={heroimage} balance={10132} donors={12} />
-                <Main story={Story} donors={12}></Main>
+                <Main story={Story} donors={12} sharetext={shareText}></Main>
                 <Footer />
             </div>
+        );
+    }
+}
+
+class Donate extends Component {
+    render() {
+        return (
+            <div>
+                <Grid>
+                    <Row>
+                        <Col xs={12}>
+                            <h1>{HeroTitle}</h1>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12} sm={9}>
+                            <StripeProvider apiKey="pk_test_12345">
+                                <ChargeForm />
+                            </StripeProvider>
+                        </Col>
+                        <Col xs={12} sm={3}>
+                            <TallyPanel />
+                        </Col>
+                    </Row>
+                </Grid>
+            </div>
+        );
+    }
+}
+
+class App extends Component {
+    render() {
+        return (
+            <Router>
+                <div>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/donate" component={Donate} />
+                </div>
+            </Router>
         );
     }
 }

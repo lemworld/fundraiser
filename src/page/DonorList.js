@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './DonorList.css';
 
@@ -49,7 +50,9 @@ class DonorList extends React.Component {
                 </div>
                 <div className="donateButtonContainer">
                     <p>Won't you help us?</p>
-                    <button className="donate">Donate Now</button>
+                    <Link to="/donate">
+                        <button className="donate">Donate Now</button>
+                    </Link>
                 </div>
             </div>
         );
