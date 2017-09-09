@@ -1,0 +1,27 @@
+.tracker {
+    padding: 50px 30px;
+}
+
+.raisedBalance, .raisedSoFarText {
+    color: #4C4C4C;
+}
+
+.raisedBalance {
+    font-size: 36px;
+    line-height: 40px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.raisedSoFarText {
+    font-size: 16px;
+    line-height: 25px;
+    letter-spacing: 0.7px;
+}
+
+.tracker button.donate {
+    width: 250px;
+    padding: 6px 0;
+    height: inherit;
+    margin-top: 40px;
+}

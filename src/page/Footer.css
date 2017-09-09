@@ -1,0 +1,19 @@
+footer {
+    background-color: #56445D;
+    color: #D1D1D1;
+    min-height: 180px;
+    padding-bottom: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+footer p {
+    align-self: flex-end;
+}
+
+@media (min-width: 768px) {
+    .footer {
+        padding: 0;
+    }
+}

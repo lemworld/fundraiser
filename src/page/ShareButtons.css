@@ -1,0 +1,19 @@
+.shareButtonsContainter {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.shareButtonsContainter .shareTitle {
+    font-size: 22px;
+    font-weight: bold;
+    display: block;
+}
+
+.shareButtonsContainter .shareButtons {
+    margin-top: 20px;
+}
+
+.shareButtonsContainter .shareButtons button {
+    margin: 0 10px;
+    padding: 10px;
+}

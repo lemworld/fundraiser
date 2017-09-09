@@ -1,0 +1,63 @@
+.titleDonors {
+    margin-bottom: 15px;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.itemDonation {
+    border-bottom: 1px solid #E6E6E6;
+    display: flex;
+}
+
+.itemDonation .donationDetails {
+    display: inline-block;
+    width: 30%;
+}
+
+.itemDonation .donationMessage {
+    display: inline-block;
+    width: 70%;
+    border-left: 1px solid #E6E6E6;
+    padding: 10px 0 20px 20px;
+}
+
+.itemDonation .donationMessage .donorName {
+    font-weight: bold;
+    line-height: 35px;
+    font-size: 15px;
+}
+
+.itemDonation .donationMessage .donorMessage {
+    margin-top: 10px;
+}
+
+.itemDonation .donationDetails {
+    padding-top: 10px;
+}
+
+.itemDonation .donationDetails .donationAmount {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 35px;
+}
+
+.itemDonation .donationDetails .donationDate {
+    color: #868686;
+}
+
+.containerDonorList .donateButtonContainer {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.containerDonorList p {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.containerDonorList button.donate {
+    width: 250px;
+    padding: 6px 0;
+    height: inherit;
+}

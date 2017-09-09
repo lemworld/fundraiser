@@ -1,0 +1,31 @@
+.hero {
+    background-color: #FFFFFF;
+    min-height: 400px;
+    border: 1px solid #E6E6E6;
+    border-top: none;
+    display: flex;
+    align-items: center;
+}
+
+.titleRow h1 {
+    text-align: left;
+    margin: 30px 0 50px 0;
+    font-size: 30px;
+}
+
+@media (min-width: 768px) {
+    .titleCol {
+        padding-left: 0;
+    }
+
+    .titleRow h1 {
+        margin: 30px 0 50px 20px;
+    }
+}
+
+
+.heroimagecontainer {
+    margin-left: -1px;
+    margin-right: -1px;
+    padding: 0;
+}
