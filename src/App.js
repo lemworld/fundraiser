@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 
@@ -40,6 +40,27 @@ class Home extends Component {
 }
 
 class Donate extends Component {
+
+    constructor(props) {
+        super(props);
+        this.handleDonationAmountChange = this.handleDonationAmountChange.bind(this);
+        this.state = {donationAmount: 0.00, donationFees: 0.00, donationTotal: 0.00};
+    }
+
+    handleDonationAmountChange(donationNewAmount) {
+
+        if (isNaN(donationNewAmount) || donationNewAmount <= 0) {
+            this.setState({donationAmount: donationNewAmount, donationFees: 0.00, donationTotal: 0.00});
+        }
+
+        else {
+            const donationAmount = parseFloat(donationNewAmount);
+            const donationFees = (donationAmount * 0.029) + 0.30;
+            const donationTotal = donationAmount + donationFees;
+            this.setState({donationAmount: donationAmount, donationFees: donationFees, donationTotal: donationTotal});
+        }
+    }
+
     render() {
         return (
             <div>
@@ -47,19 +68,23 @@ class Donate extends Component {
                     <Row>
                         <Col xs={12}>
                             <h1>{HeroTitle}</h1>
+                            <Link to="/">
+                                &laquo; Return Home
+                            </Link>
                         </Col>
                     </Row>
                     <Row>
                         <Col xs={12} sm={9}>
                             <StripeProvider apiKey="pk_test_12345">
-                                <ChargeForm />
+                                <ChargeForm totalChargeAmount={this.state.donationTotal} />
                             </StripeProvider>
                         </Col>
                         <Col xs={12} sm={3}>
-                            <TallyPanel />
+                            <TallyPanel onDonationChange={this.handleDonationAmountChange} donationAmount={this.state.donationAmount} donationFees={this.state.donationFees} donationTotal={this.state.donationTotal} />
                         </Col>
                     </Row>
                 </Grid>
+                <Footer />
             </div>
         );
     }

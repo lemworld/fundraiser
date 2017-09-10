@@ -5,7 +5,7 @@ class CardSection extends React.Component {
     render() {
         return (
             <label>
-                Card details
+                Credit / Debit Card Details:
                 <CardElement style={{base: {fontSize: '18px'}}} />
             </label>
         );

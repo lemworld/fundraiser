@@ -59,7 +59,8 @@ button.donate:hover {
 }
 
 form {
+    margin-top: 30px;
     margin-bottom: 40px;
     padding-bottom: 40px;
-    border-bottom: 3px solid #e6ebf1;
+    /* border-bottom: 3px solid #e6ebf1; */
 }

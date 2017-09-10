@@ -22,7 +22,12 @@ class CheckoutForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-
+                <label>Your Full Name:
+                    <input />
+                </label>
+                <label>Your Email Address:
+                    <input />
+                </label>
                 <CardSection />
                 <button className="donate">Donate</button>
             </form>

@@ -3,3 +3,64 @@
     border: 1px solid #E6E6E6;
     padding: 20px;
 }
+
+.tallypanelcontainer .tallypanelheading {
+    font-size: 22px;
+}
+
+.tallypanelcontainer .tallycalculations {
+    text-align: right;
+}
+
+.tallypanelcontainer .tallycalculations .tallycalculationsitem {
+    padding: 5px 0;
+}
+
+.tallypanelcontainer .tallycalculations .tallycalculationsitem.emphasis {
+    font-size: 16px;
+    border-top: 1px solid #868686;
+    padding-top: 15px;
+}
+
+.tallypanelcontainer .feeinfotext {
+    margin-top: 20px;
+    color: #868686;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+input {
+    border: 0;
+    display: block;
+    margin: 10px 0 20px 0;
+    max-width: 500px;
+    padding: 10px 14px;
+    box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px, rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+    border-radius: 4px;
+    background: white;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px, rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
+    transition: all 150ms ease;
+}
+
+.donationInputBox {
+    position: relative;
+}
+
+.donationInputBox .currencySymbol {
+    position: absolute;
+    top: 14px;
+    left: 15px;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.donationInputBox input {
+    font-size: 20px;
+    padding-left: 35px;
+    width: 100%;
+}
