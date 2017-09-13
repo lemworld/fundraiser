@@ -29,23 +29,6 @@
     line-height: 18px;
 }
 
-input {
-    border: 0;
-    display: block;
-    margin: 10px 0 20px 0;
-    max-width: 500px;
-    padding: 10px 14px;
-    box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px, rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
-    border-radius: 4px;
-    background: white;
-}
-
-input:focus {
-    outline: none;
-    box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px, rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
-    transition: all 150ms ease;
-}
-
 .donationInputBox {
     position: relative;
 }
@@ -59,8 +42,22 @@ input:focus {
     font-weight: bold;
 }
 
+.donationInputBox .currencySymbol.error {
+    color: red;
+}
+
 .donationInputBox input {
     font-size: 20px;
     padding-left: 35px;
     width: 100%;
+}
+
+@media (max-width: 767px) {
+    .donationInputBox input {
+        max-width: none;
+    }
+
+    .tallypanelcontainer {
+        margin-top: 30px;
+    }
 }

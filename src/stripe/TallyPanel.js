@@ -1,11 +1,26 @@
 import React from 'react';
 import "./TallyPanel.css";
 
-
 class TallyPanel extends React.Component {
     constructor(props) {
         super(props);
         this.handleDonationChange = this.handleDonationChange.bind(this);
+        this.focusDonationInput = this.focusDonationInput.bind(this);
+    }
+
+    focusDonationInput() {
+        // Set focus to the donation input
+        this.textDonationInput.focus();
+    }
+
+    componentDidUpdate() {
+        // Set focus to the donation input
+        console.log("Will receive props");
+        if (this.props.donationInputError) {
+            console.log("donationInputError");
+            this.focusDonationInput();
+        }
+
     }
 
     handleDonationChange(e) {
@@ -24,10 +39,15 @@ class TallyPanel extends React.Component {
                     Donation Amount:
                 </div>
 
-
                 <div className="donationInputBox">
-                    <span className="currencySymbol">$</span>
-                    <input value={donationAmount} onChange={this.handleDonationChange} />
+                    <span className={"currencySymbol " + (this.props.donationInputError ? " error" : "")}>$</span>
+                    <input
+                        id="donation_input"
+                        value={donationAmount}
+                        onChange={this.handleDonationChange}
+                        className={this.props.donationInputError ? "error" : ""}
+                        autoFocus
+                        ref={input => this.textDonationInput = input} />
                 </div>
 
                 <div className="tallycalculations">
@@ -41,6 +61,7 @@ class TallyPanel extends React.Component {
                         <strong>Total Charge:</strong> {donationTotal.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                     </div>
                 </div>
+
                 <div className="feeinfotext">
                     Our credit / debit card processor, Stripe, charges a transaction fee of 2.9% + 30&cent;. We transparently pass that fee along to the donor so as not to impact the amount the beneficiary will receive.
                 </div>

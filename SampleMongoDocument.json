@@ -1,0 +1,12 @@
+{
+    "donation_id" : 1,
+    "fullname" : "John Doe",
+    "email" : "test@example.com",
+    "stripe_customer_id" : "cus_BOATMWgIldYCYi",
+    "stripe_charge_id" : "ch_1B1OAh2eZvKYlo2Cie8X3Gv3",
+    "stripe_balance_transaction" : "txn_19XJJ02eZvKYlo2ClwuJ1rbA",
+    "donation_amount" : 999,
+    "donation_stripe_fees" : 59,
+    "created" : "2017-09-13T00:00:00Z",
+    "message" : null
+}

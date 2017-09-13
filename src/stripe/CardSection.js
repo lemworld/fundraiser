@@ -4,10 +4,14 @@ import {CardElement} from 'react-stripe-elements';
 class CardSection extends React.Component {
     render() {
         return (
-            <label>
-                Credit / Debit Card Details:
-                <CardElement style={{base: {fontSize: '18px'}}} />
-            </label>
+            <div>
+                <label htmlFor="stripeCardElement">
+                    Credit / Debit Card Details:
+                </label>
+
+                <CardElement id="stripeCardElement" style={{base: {fontSize: '18px'}}} />
+            </div>
+
         );
     }
 };

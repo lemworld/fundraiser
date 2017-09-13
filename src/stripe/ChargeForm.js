@@ -7,11 +7,10 @@ import './ChargeForm.css';
 class ChargeForm extends React.Component {
 
     render() {
-        const totalChargeAmount = this.props.totalChargeAmount;
         return (
             <div>
                 <Elements>
-                    <CheckoutForm />
+                    <CheckoutForm onDonationChange={this.props.onDonationChange} totalChargeAmount={this.props.totalChargeAmount} />
                 </Elements>
             </div>
         );

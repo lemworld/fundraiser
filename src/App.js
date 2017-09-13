@@ -44,21 +44,26 @@ class Donate extends Component {
     constructor(props) {
         super(props);
         this.handleDonationAmountChange = this.handleDonationAmountChange.bind(this);
-        this.state = {donationAmount: 0.00, donationFees: 0.00, donationTotal: 0.00};
+        this.state = {donationAmount: 0.00, donationFees: 0.00, donationTotal: 0.00, donationInputError: false};
     }
 
     handleDonationAmountChange(donationNewAmount) {
 
         if (isNaN(donationNewAmount) || donationNewAmount <= 0) {
-            this.setState({donationAmount: donationNewAmount, donationFees: 0.00, donationTotal: 0.00});
+            this.setState({donationAmount: donationNewAmount, donationFees: 0.00, donationTotal: 0.00, donationInputError: true});
         }
 
         else {
             const donationAmount = parseFloat(donationNewAmount);
             const donationFees = (donationAmount * 0.029) + 0.30;
             const donationTotal = donationAmount + donationFees;
-            this.setState({donationAmount: donationAmount, donationFees: donationFees, donationTotal: donationTotal});
+            this.setState({donationAmount: donationAmount, donationFees: donationFees, donationTotal: donationTotal, donationInputError: false});
         }
+    }
+
+    componentDidMount() {
+        // Scroll the browser window to the top when this page loads
+        window.scrollTo(0,0);
     }
 
     render() {
@@ -74,13 +79,13 @@ class Donate extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col xs={12} sm={9}>
-                            <StripeProvider apiKey="pk_test_12345">
-                                <ChargeForm totalChargeAmount={this.state.donationTotal} />
-                            </StripeProvider>
+                        <Col xs={12} sm={4} smPush={8} md={3} mdPush={9}>
+                            <TallyPanel onDonationChange={this.handleDonationAmountChange} donationAmount={this.state.donationAmount} donationFees={this.state.donationFees} donationTotal={this.state.donationTotal} donationInputError={this.state.donationInputError} />
                         </Col>
-                        <Col xs={12} sm={3}>
-                            <TallyPanel onDonationChange={this.handleDonationAmountChange} donationAmount={this.state.donationAmount} donationFees={this.state.donationFees} donationTotal={this.state.donationTotal} />
+                        <Col xs={12} sm={8} smPull={4} md={9} mdPull={3}>
+                            <StripeProvider apiKey="pk_test_12345">
+                                <ChargeForm onDonationChange={this.handleDonationAmountChange} totalChargeAmount={this.state.donationTotal} donationInputError={this.state.donationInputError} />
+                            </StripeProvider>
                         </Col>
                     </Row>
                 </Grid>
@@ -104,18 +109,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-/*
-
-<Grid fluid={true}>
-    <Row>
-        <Col xs={12}>
-            <StripeProvider apiKey="pk_test_12345">
-                <ChargeForm />
-            </StripeProvider>
-        </Col>
-    </Row>
-</Grid>
-
-*/
