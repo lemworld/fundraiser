@@ -15,7 +15,6 @@ class TallyPanel extends React.Component {
 
     componentDidUpdate() {
         // Set focus to the donation input
-        console.log("Will receive props");
         if (this.props.donationInputError) {
             console.log("donationInputError");
             this.focusDonationInput();
@@ -36,7 +35,7 @@ class TallyPanel extends React.Component {
 
             <div className="tallypanelcontainer">
                 <div className="tallypanelheading">
-                    Donation Amount:
+                    Your Donation:
                 </div>
 
                 <div className="donationInputBox">

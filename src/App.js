@@ -14,6 +14,9 @@ import TallyPanel from './stripe/TallyPanel';
 import {StripeProvider} from 'react-stripe-elements';
 import ChargeForm from './stripe/ChargeForm';
 
+// Application Constants
+import AppConstants from "./constants.js";
+
 const HeroTitle = "Help send these children to college";
 const Story = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur luctus iaculis metus vitae laoreet. Vivamus consectetur arcu nisi, dictum sodales mi dignissim id. Aliquam nec accumsan orci. Maecenas vitae nunc hendrerit lorem porta lobortis. Proin eu porta eros. Duis a lobortis eros. Donec at justo eu ipsum elementum tincidunt ut aliquam diam. Vivamus a pharetra purus. Fusce mollis porta ex, eu tincidunt augue. Aliquam id diam ut ante varius suscipit.
 
@@ -83,7 +86,7 @@ class Donate extends Component {
                             <TallyPanel onDonationChange={this.handleDonationAmountChange} donationAmount={this.state.donationAmount} donationFees={this.state.donationFees} donationTotal={this.state.donationTotal} donationInputError={this.state.donationInputError} />
                         </Col>
                         <Col xs={12} sm={8} smPull={4} md={9} mdPull={3}>
-                            <StripeProvider apiKey="pk_test_12345">
+                            <StripeProvider apiKey={AppConstants.STRIPE_PK_TEST}>
                                 <ChargeForm onDonationChange={this.handleDonationAmountChange} totalChargeAmount={this.state.donationTotal} donationInputError={this.state.donationInputError} />
                             </StripeProvider>
                         </Col>

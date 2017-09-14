@@ -4,6 +4,10 @@
 /node_modules
 /server/node_modules
 
+# secret keys
+/src/constants.js
+/server/constants.js
+
 # testing
 /coverage
 

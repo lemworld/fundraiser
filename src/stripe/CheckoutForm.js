@@ -1,5 +1,9 @@
 import React from 'react';
 import {injectStripe} from 'react-stripe-elements';
+import axios from 'axios';
+
+// Application Constants
+import AppConstants from "../constants.js";
 
 import CardSection from './CardSection';
 import './CheckoutForm.css';
@@ -29,16 +33,18 @@ class CheckoutForm extends React.Component {
     }
 
     componentDidMount() {
+        /*
         fetch("/api/").then((response) => {
             response.json().then((data) => {
                 console.log(data);
                 this.setState({tester: data});
             });
         });
+        */
     }
 
     handleSubmit = (ev) => {
-        // We don't want to let default form submission happen here, which would refresh the page.
+
         ev.preventDefault();
 
         if (this.props.totalChargeAmount <= 0) {
@@ -48,7 +54,7 @@ class CheckoutForm extends React.Component {
         }
 
         if (this.state.fullname === "") {
-            // Prompt the user to enter a valid Name
+            // Prompt the user to enter a valid Full Name
             this.setState({errorfullname: true});
             this.inputFullName.focus();
             return;
@@ -61,14 +67,27 @@ class CheckoutForm extends React.Component {
             return;
         }
 
-        // Within the context of `Elements`, this call to createToken knows which Element to
-        // tokenize, since there's only one in this group.
-        this.props.stripe.createToken({name: 'Jenny Rosen'}).then(({token}) => {
+        // Create a Stripe token, then pass that to the server API for charging
+        this.props.stripe.createToken({name: this.state.fullname})
+        .then(({token}) => {
             console.log('Received Stripe token:', token);
+            axios.post(AppConstants.PAYMENT_SERVER_URL + "/api/donations/new/",
+            {
+                amount: this.props.totalChargeAmount.toFixed(2),
+                source: token,
+                fullname: this.state.fullname,
+                emailaddress: this.state.emailaddress
+            })
+            .then(output => {
+                if (output.data.status === "succeeded") {
+                    console.log("Payment successful reported to client");
+                    // TODO: Redirect to a thank you page with share buttons!
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
         });
-
-        // However, this line of code will do the same thing:
-        // this.props.stripe.createToken({type: 'card', name: 'Jenny Rosen'});
     }
 
     render() {
@@ -98,11 +117,14 @@ class CheckoutForm extends React.Component {
 
                     <CardSection />
 
+                    <input
+                        name="chargeamount"
+                        type="hidden"
+                        value={this.props.totalChargeAmount.toFixed(2)} />
+
                     <div className="donationSubmit">
                         <button className="donate">Make Donation</button>
                         <p>We will charge your card for this amount: {this.props.totalChargeAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-
-                        <p>{this.state.tester}</p>
                     </div>
 
                 </form>
