@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import {injectStripe} from 'react-stripe-elements';
 import axios from 'axios';
 
@@ -13,7 +14,7 @@ class CheckoutForm extends React.Component {
         super(props);
         this.handleStripeChargeChange = this.handleStripeChargeChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.state = {tester: "Loading...", fullname: "", emailaddress: "", errorfullname: false, erroremailaddress: false};
+        this.state = {tester: "Loading...", fullname: "", emailaddress: "", personalMessage: "", showName: "public", errorfullname: false, erroremailaddress: false, paymentProcessing: false, errorPayment: "", paymentSuccess: false};
     }
 
     handleStripeChargeChange(newStatus) {
@@ -33,19 +34,14 @@ class CheckoutForm extends React.Component {
     }
 
     componentDidMount() {
-        /*
-        fetch("/api/").then((response) => {
-            response.json().then((data) => {
-                console.log(data);
-                this.setState({tester: data});
-            });
-        });
-        */
+
     }
 
     handleSubmit = (ev) => {
 
         ev.preventDefault();
+
+        this.setState({errorPayment: "", paymentProcessing: true});
 
         if (this.props.totalChargeAmount <= 0) {
             // Prompt the user to enter a valid donation amount
@@ -70,32 +66,55 @@ class CheckoutForm extends React.Component {
         // Create a Stripe token, then pass that to the server API for charging
         this.props.stripe.createToken({name: this.state.fullname})
         .then(({token}) => {
+
+            if (typeof token === "undefined") {
+                console.log("Stripe token undefined");
+                return;
+            }
+
             console.log('Received Stripe token:', token);
             axios.post(AppConstants.PAYMENT_SERVER_URL + "/api/donations/new/",
             {
                 amount: this.props.totalChargeAmount.toFixed(2),
+                amount_donation: this.props.donationAmount.toFixed(2),
                 source: token,
                 fullname: this.state.fullname,
-                emailaddress: this.state.emailaddress
+                emailaddress: this.state.emailaddress,
+                personalMessage: this.state.personalMessage,
+                showName: this.state.showName
             })
             .then(output => {
                 if (output.data.status === "succeeded") {
                     console.log("Payment successful reported to client");
-                    // TODO: Redirect to a thank you page with share buttons!
+                    // Redirect to a thank you page with share buttons!
+                    this.setState({paymentSuccess: true});
+                }
+                else if (output.data.error) {
+                    console.log("Payment error: " + output.data.error);
+                    this.setState({errorPayment: "Error: " + output.data.error + " Please try again.", paymentProcessing: false});
                 }
             })
             .catch(error => {
                 console.log(error);
+                this.setState({errorPayment: "Error: " + error, paymentProcessing: false});
             })
         });
     }
 
     render() {
+
+        if (this.state.paymentSuccess) {
+            return(
+                <Redirect to="/?a=thank+you" />
+            );
+        }
+
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className="donationForm">
 
                     <label htmlFor="fullname">Full Name:</label>
+                    <p className="helptext">Please enter as it appears on your credit/debit card</p>
                     <input
                         name="fullname"
                         type="text"
@@ -105,7 +124,9 @@ class CheckoutForm extends React.Component {
                         ref={input => this.inputFullName = input}
                         onChange={this.handleInputChange} />
 
+
                     <label htmlFor="emailaddress">Email Address:</label>
+                    <p className="helptext">We will send you a receipt for your records</p>
                     <input
                         name="emailaddress"
                         type="email"
@@ -115,6 +136,23 @@ class CheckoutForm extends React.Component {
                         ref={input => this.inputEmailAddress = input}
                         onChange={this.handleInputChange} />
 
+                    <label htmlFor="personalMessage">Personal Message:</label>
+                    <textarea
+                        name="personalMessage"
+                        rows="3"
+                        value={this.state.personalMessage}
+                        placeholder="Share a public message on the donation page (optional)"
+                        onChange={this.handleInputChange} />
+
+                    <label htmlFor="showName">Donation Appearance</label>
+                    <p className="helptext">We can show your name next to your donation, or leave it as Anonymous</p>
+                    <select name="showName" value={this.state.showName} onChange={this.handleInputChange} >
+                        <option value="public">Show your name publicly as: {this.state.fullname}</option>
+                        <option value="anonymous">Show the donor as: Anonymous</option>
+                    </select>
+
+                    <hr />
+
                     <CardSection />
 
                     <input
@@ -123,8 +161,9 @@ class CheckoutForm extends React.Component {
                         value={this.props.totalChargeAmount.toFixed(2)} />
 
                     <div className="donationSubmit">
-                        <button className="donate">Make Donation</button>
                         <p>We will charge your card for this amount: {this.props.totalChargeAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+                        <button className="donate" disabled={this.state.paymentProcessing}>Make Donation</button>
+                        <p className="error">{this.state.errorPayment}</p>
                     </div>
 
                 </form>

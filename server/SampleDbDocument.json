@@ -1,0 +1,13 @@
+{
+    "donation_id" : "88dbe9e0-9a34-11e7-ada2-db3fff75ee33",
+    "fullname" : "John Doe",
+    "email" : "test@example.com",
+    "stripe_charge": "[Stripe Charge Object]",
+    "stripe_status" : "succeeded",
+    "donation_amount" : 1024.15,
+    "charge_amount": 1050.00,
+    "donation_stripe_fees" : null,
+    "created" : "2017-09-15T12:40:07-04:00",
+    "message" : "Our optional personal message",
+    "showname" : "public"
+}

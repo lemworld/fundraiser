@@ -15,7 +15,7 @@ class Main extends React.Component {
                             <Story story={this.props.story} donors={this.props.donors} />
                         </Col>
                         <Col xs={12} md={4}>
-                            <DonorList donors={this.props.donors} />
+                            <DonorList donors={this.props.donors} donorList={this.props.donorList} />
                         </Col>
                     </Row>
                     <Row>

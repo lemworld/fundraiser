@@ -13,8 +13,8 @@ var params = {
         { AttributeName: "donation_id", KeyType: "HASH"},  // Partition key
         { AttributeName: "created", KeyType: "RANGE" }  // Sort key
     ],
-    AttributeDefinitions: [       
-        { AttributeName: "donation_id", AttributeType: "N" },
+    AttributeDefinitions: [
+        { AttributeName: "donation_id", AttributeType: "S" },
         { AttributeName: "created", AttributeType: "S" }
     ],
     ProvisionedThroughput: {

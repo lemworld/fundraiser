@@ -31,11 +31,29 @@ const Story = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitu
 const shareText = "Check this out: " + HeroTitle;
 
 class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {donationTotal: 0.00, donationCount: 0, donorList: {}};
+    }
+    componentDidMount() {
+
+        fetch("/api/donations/list/").then((response) => {
+            response.json().then((data) => {
+                data.donations.sort((a, b) => {
+                    //console.log(new Date(b.date) - new Date(a.date));
+                    return new Date(b.created) - new Date(a.created);
+                });
+                console.log(data.donations);
+                this.setState({donationTotal: data.total_amount, donationCount: data.donations_count, donorList: data.donations});
+            });
+        });
+
+    }
     render() {
         return (
             <div>
-                <Hero title={HeroTitle} heroimage={heroimage} balance={10132} donors={12} />
-                <Main story={Story} donors={12} sharetext={shareText}></Main>
+                <Hero title={HeroTitle} heroimage={heroimage} balance={this.state.donationTotal} donors={this.state.donationCount} />
+                <Main story={Story} donors={this.state.donationCount} donorList={this.state.donorList} sharetext={shareText}></Main>
                 <Footer />
             </div>
         );
@@ -87,7 +105,7 @@ class Donate extends Component {
                         </Col>
                         <Col xs={12} sm={8} smPull={4} md={9} mdPull={3}>
                             <StripeProvider apiKey={AppConstants.STRIPE_PK_TEST}>
-                                <ChargeForm onDonationChange={this.handleDonationAmountChange} totalChargeAmount={this.state.donationTotal} donationInputError={this.state.donationInputError} />
+                                <ChargeForm onDonationChange={this.handleDonationAmountChange} donationAmount={this.state.donationAmount} totalChargeAmount={this.state.donationTotal} donationInputError={this.state.donationInputError} />
                             </StripeProvider>
                         </Col>
                     </Row>

@@ -13,7 +13,13 @@ form {
     padding-bottom: 40px;
 }
 
-input {
+form p.helptext {
+    color: #6d6c6c;
+    font-weight: 400;
+    letter-spacing: 0.025em;
+}
+
+input, textarea, select {
     border: 0;
     display: block;
     margin: 10px 0 20px 0;
@@ -29,13 +35,13 @@ input.error {
     color: red;
 }
 
-input:focus {
+input:focus, textarea:focus, select:focus {
     outline: none;
     box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px, rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
     transition: all 150ms ease;
 }
 
-input::placeholder {
+input::placeholder, textarea::placeholder {
     color: #868686;
     font-weight: 400;
 }
@@ -67,6 +73,11 @@ button.donate:hover {
     cursor: pointer;
     background-color: #CC91C5;
     box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
+}
+
+button.donate:disabled, button.donate[disabled] {
+    background-color: #9E6498;
+    cursor: not-allowed;
 }
 
 label {

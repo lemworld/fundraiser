@@ -10,7 +10,7 @@ class ChargeForm extends React.Component {
         return (
             <div>
                 <Elements>
-                    <CheckoutForm onDonationChange={this.props.onDonationChange} totalChargeAmount={this.props.totalChargeAmount} />
+                    <CheckoutForm onDonationChange={this.props.onDonationChange} donationAmount={this.props.donationAmount} totalChargeAmount={this.props.totalChargeAmount} />
                 </Elements>
             </div>
         );
