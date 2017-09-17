@@ -41,6 +41,9 @@ class Home extends Component {
 
     componentDidMount() {
 
+        // Scroll the browser window to the top when this page loads
+        window.scrollTo(0,0);
+
         // Use the URLSearchParams API to see if we should display the Thank You modal
         const query = new URLSearchParams(this.props.location.search);
         this.setState({showThankYou: query.get('a') === "thank you"});
@@ -69,7 +72,7 @@ class Home extends Component {
                     onRequestClose={this.closeThankYouModal}
                     className="thankYouModal"
                     overlayClassName="thankYouOverlay"
-                    contentLabel="Example Modal"
+                    contentLabel="Thank You Popup Window"
                     >
 
                         <div className="thankYouModalBody">
