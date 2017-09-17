@@ -10,7 +10,7 @@ class Hero extends React.Component {
             <Grid>
                 <Row className="hero">
                     <Col xs={12} md={8} className="heroimagecontainer">
-                        <Image src={this.props.heroimage} responsive />
+                        <Image src={this.props.heroimage} />
                     </Col>
                     <Col xs={12} md={4}>
                         <DonationTracker balance={this.props.balance} donors={this.props.donors} />
