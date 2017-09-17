@@ -7,6 +7,10 @@ body {
     color: #4C4C4C;
 }
 
+.ReactModal__Body--open {
+    overflow: hidden;
+}
+
 form {
     margin-top: 30px;
     margin-bottom: 40px;
@@ -84,4 +88,59 @@ label {
     font-weight: bold;
     letter-spacing: 0.025em;
     width: 100%;
+}
+
+.thankYouModal {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    right: 20%;
+    bottom: 20%;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 4px;
+    outline: none;
+    padding: 40px;
+}
+
+.thankYouOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 767px) {
+    .thankYouModal {
+        top: 5%;
+        left: 5%;
+        right: 5%;
+        bottom: 5%;
+    }
+}
+
+.thankYouModalBody {
+    text-align: center;
+}
+
+.thankYouModalBody h2 {
+    font-size: 25px;
+    margin-top: 15px;
+    margin-bottom: 50px;
+}
+
+.thankYouModalBody p {
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.thankYouModalBody button.close {
+    top: 0;
+    right: 0;
+    position: absolute;
+    padding: 20px;
 }
