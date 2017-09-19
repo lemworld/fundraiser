@@ -14,8 +14,8 @@
     "fundraiser",
     "nodejs"
   ],
-  "author": "Lee Emmert",
-  "license": "ISC",
+  "author": "Lee Emmert (https://leeemmert.com)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/lemworld/fundraiser/issues"
   },

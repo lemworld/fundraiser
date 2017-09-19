@@ -1,7 +1,23 @@
 {
   "name": "fundraiser",
   "version": "0.1.0",
-  "private": true,
+  "author": "Lee Emmert (https://leeemmert.com)",
+  "license": "MIT",
+  "description": "Raise funds with an easy and beautiful interface built with React, Express, and Node",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lemworld/fundraiser.git"
+  },
+  "keywords": [
+    "fundraiser",
+    "nodejs",
+    "express",
+    "react"
+  ],
+  "bugs": {
+    "url": "https://github.com/lemworld/fundraiser/issues"
+  },
+  "homepage": "https://github.com/lemworld/fundraiser#readme",
   "dependencies": {
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
