@@ -9,6 +9,7 @@ const ServerConstants = {
     STRIPE_SK_TEST: "sk_test_yourtestsecretkey",
     STRIPE_PK_PROD: "pk_yourprodpublishablekey",
     STRIPE_SK_PROD: "sk_yourprodsecretkey",
+    STRIPE_TEST_MODE: true, // Set this to false to stop using the Stripe testing environment
     PAYMENT_SERVER_URL: "http://localhost:3001"
 };
 

@@ -97,6 +97,7 @@ class Donate extends Component {
     constructor(props) {
         super(props);
         this.handleDonationAmountChange = this.handleDonationAmountChange.bind(this);
+        this.ourStripePublishableKey = AppConstants.STRIPE_TEST_MODE ? AppConstants.STRIPE_PK_TEST : AppConstants.STRIPE_PK_PROD;
         this.state = {donationAmount: 0.00, donationFees: 0.00, donationTotal: 0.00, donationInputError: false};
     }
 
@@ -136,7 +137,7 @@ class Donate extends Component {
                             <TallyPanel onDonationChange={this.handleDonationAmountChange} donationAmount={this.state.donationAmount} donationFees={this.state.donationFees} donationTotal={this.state.donationTotal} donationInputError={this.state.donationInputError} />
                         </Col>
                         <Col xs={12} sm={8} smPull={4} md={9} mdPull={3}>
-                            <StripeProvider apiKey={AppConstants.STRIPE_PK_TEST}>
+                            <StripeProvider apiKey={this.ourStripePublishableKey}>
                                 <ChargeForm onDonationChange={this.handleDonationAmountChange} donationAmount={this.state.donationAmount} totalChargeAmount={this.state.donationTotal} donationInputError={this.state.donationInputError} />
                             </StripeProvider>
                         </Col>

@@ -1,19 +1,21 @@
 const express = require('express');
 const app = express();
-const ServerConstants = require("./constants");
-const stripe = require("stripe")(ServerConstants.STRIPE_SK_TEST);
-const bodyParser = require("body-parser");
 const cors = require('cors');
 const uuidv1 = require('uuid/v1');
 const moment = require('moment');
+var AWS = require("aws-sdk");
 
+const ServerConstants = require("./constants");
+
+const ourStripeSecretKey = ServerConstants.STRIPE_TEST_MODE ? ServerConstants.STRIPE_SK_TEST : ServerConstants.STRIPE_SK_PROD;
+const stripe = require("stripe")(ourStripeSecretKey);
+
+const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use(cors());
-
-var AWS = require("aws-sdk");
 
 AWS.config.update({
     region: "us-east-1",
@@ -70,9 +72,6 @@ app.post("/api/donations/new/", (req, res) => {
     // Convert the charge amount from a float to integer in cents
     let amount = parseInt(parseFloat(req.body.amount) * 100);
 
-    console.log("Amount to charge: " + amount);
-    console.log(req.body);
-
     stripe.customers.create({
         email: req.body.emailaddress,
         card: req.body.source.id
@@ -83,12 +82,12 @@ app.post("/api/donations/new/", (req, res) => {
             description: "Test Donation",
             currency: "usd",
             customer: customer.id
-        }))
+    }))
     .then(charge => {
         res.send(charge);
 
         console.log(charge);
-        var docClient = new AWS.DynamoDB.DocumentClient();
+        var docClient = new AWS.DynamoDB.DocumentClient({ convertEmptyValues: true });
         var params = {
             TableName: "Donations",
             Item: {
@@ -105,7 +104,6 @@ app.post("/api/donations/new/", (req, res) => {
                 "showname" : req.body.showName
             }
         };
-        console.log(params);
         docClient.put(params, function(err, data) {
             if (err) {
                 console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
@@ -116,7 +114,6 @@ app.post("/api/donations/new/", (req, res) => {
     })
     .catch(err => {
         console.log("Error:", err);
-        console.log("Error message:", err.message)
         res.send({error: err.message});
     });
 });
