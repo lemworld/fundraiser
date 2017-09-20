@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
 import Modal from 'react-modal';
-
+import WebFont from 'webfontloader';
 
 // Page Components
 import Hero from './page/Hero';
@@ -48,7 +48,7 @@ class Home extends Component {
         const query = new URLSearchParams(this.props.location.search);
         this.setState({showThankYou: query.get('a') === "thank you"});
 
-        fetch("/api/donations/list/").then((response) => {
+        fetch(AppConstants.PAYMENT_SERVER_URL + "/api/donations/list/").then((response) => {
             response.json().then((data) => {
                 data.donations.sort((a, b) => {
                     //console.log(new Date(b.date) - new Date(a.date));
@@ -98,7 +98,7 @@ class Donate extends Component {
         super(props);
         this.handleDonationAmountChange = this.handleDonationAmountChange.bind(this);
         this.ourStripePublishableKey = AppConstants.STRIPE_TEST_MODE ? AppConstants.STRIPE_PK_TEST : AppConstants.STRIPE_PK_PROD;
-        this.state = {donationAmount: 0.00, donationFees: 0.00, donationTotal: 0.00, donationInputError: false};
+        this.state = {donationAmount: 0.00, donationFees: 0.00, donationTotal: 0.00, donationInputError: false, stripeLoaded: false};
     }
 
     handleDonationAmountChange(donationNewAmount) {
@@ -115,9 +115,36 @@ class Donate extends Component {
         }
     }
 
+    componentWillMount() {
+        if (!window.Stripe) {
+            this._stripeJsInterval = setInterval(this.checkForStripe.bind(this), 250);
+        }
+        else {
+            this.setState({stripeLoaded: true})
+        }
+    }
+
+    checkForStripe() {
+        console.log("Checking for window.Stripe");
+        if (window.Stripe) {
+            this.setState({stripeLoaded: true});
+            if (this._stripeJsInterval) {
+                clearInterval(this._stripeJsInterval);
+                this._stripeJsInterval = null;
+            }
+        }
+    }
+
     componentDidMount() {
         // Scroll the browser window to the top when this page loads
         window.scrollTo(0,0);
+    }
+
+    componentWillUnmount() {
+        if (this._stripeJsInterval) {
+            clearInterval(this._stripeJsInterval);
+            this._stripeJsInterval = null;
+        }
     }
 
     render() {
@@ -137,9 +164,11 @@ class Donate extends Component {
                             <TallyPanel onDonationChange={this.handleDonationAmountChange} donationAmount={this.state.donationAmount} donationFees={this.state.donationFees} donationTotal={this.state.donationTotal} donationInputError={this.state.donationInputError} />
                         </Col>
                         <Col xs={12} sm={8} smPull={4} md={9} mdPull={3}>
+                            {this.state.stripeLoaded &&
                             <StripeProvider apiKey={this.ourStripePublishableKey}>
                                 <ChargeForm onDonationChange={this.handleDonationAmountChange} donationAmount={this.state.donationAmount} totalChargeAmount={this.state.donationTotal} donationInputError={this.state.donationInputError} />
                             </StripeProvider>
+                        }
                         </Col>
                     </Row>
                 </Grid>
@@ -150,6 +179,14 @@ class Donate extends Component {
 }
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        WebFont.load({
+            google: {
+                families: ['Lato:400,400i,700,700i', 'sans-serif']
+            }
+        });
+    }
     render() {
         return (
             <Router>

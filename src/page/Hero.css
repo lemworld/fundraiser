@@ -38,3 +38,15 @@
 .heroimagecontainer img {
     width: 100%;
 }
+
+@media (max-width: 767px) {
+    .hero {
+        border-left: none;
+        border-right: none;
+    }
+    .heroimagecontainer {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+}

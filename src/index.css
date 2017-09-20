@@ -7,6 +7,12 @@ body {
     color: #4C4C4C;
 }
 
+@media (max-width: 767px) {
+    body {
+        margin-top: 0;
+    }
+}
+
 .ReactModal__Body--open {
     overflow: hidden;
 }
