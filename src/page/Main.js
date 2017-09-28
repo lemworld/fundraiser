@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-grid-system';
 
 import Story from './Story';
 import DonorList from './DonorList';
@@ -9,7 +9,7 @@ class Main extends React.Component {
     render() {
         return (
             <div className="mainContent">
-                <Grid>
+                <Container>
                     <Row>
                         <Col xs={12} md={8} className="titleCol">
                             <Story story={this.props.story} donors={this.props.donors} />
@@ -22,7 +22,7 @@ class Main extends React.Component {
                         <hr />
                         <ShareButtons sharetext={this.props.sharetext} />
                     </Row>
-                </Grid>
+                </Container>
             </div>
         );
     }

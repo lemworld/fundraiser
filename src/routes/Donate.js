@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-grid-system';
 import {Link} from 'react-router-dom';
 import Footer from '../page/Footer';
 
@@ -69,7 +69,7 @@ class Donate extends Component {
     render() {
         return (
             <div>
-                <Grid>
+                <Container>
                     <Row>
                         <Col xs={12}>
                             <h1>{AppConstants.HERO_TITLE}</h1>
@@ -79,10 +79,10 @@ class Donate extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col xs={12} sm={4} smPush={8} md={3} mdPush={9}>
+                        <Col xs={12} md={4} lg={3} push={{md: 8, lg: 9}}>
                             <TallyPanel onDonationChange={this.handleDonationAmountChange} donationAmount={this.state.donationAmount} donationFees={this.state.donationFees} donationTotal={this.state.donationTotal} donationInputError={this.state.donationInputError} />
                         </Col>
-                        <Col xs={12} sm={8} smPull={4} md={9} mdPull={3}>
+                        <Col xs={12} md={8} lg={9} pull={{md:4, lg: 3}}>
                             {this.state.stripeLoaded &&
                             <StripeProvider apiKey={this.ourStripePublishableKey}>
                                 <ChargeForm onDonationChange={this.handleDonationAmountChange} donationAmount={this.state.donationAmount} totalChargeAmount={this.state.donationTotal} donationInputError={this.state.donationInputError} />
@@ -90,7 +90,7 @@ class Donate extends Component {
                         }
                         </Col>
                     </Row>
-                </Grid>
+                </Container>
                 <Footer />
             </div>
         );

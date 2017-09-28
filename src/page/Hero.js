@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-grid-system';
 import './Hero.css';
 
 import DonationTracker from './DonationTracker';
@@ -7,12 +7,12 @@ import DonationTracker from './DonationTracker';
 class Hero extends React.Component {
     render() {
         return (
-            <Grid>
+            <Container>
                 <Row className="hero">
-                    <Col xs={12} md={8} className="heroimagecontainer">
-                        <Image src={this.props.heroimage} />
+                    <Col xs={12} lg={8} style={{ padding: 0}} className="heroimagecontainer">
+                        <img src={this.props.heroimage} alt={this.props.title} />
                     </Col>
-                    <Col xs={12} md={4}>
+                    <Col xs={12} lg={4} style={{ padding: 0}}>
                         <DonationTracker balance={this.props.balance} donors={this.props.donors} />
                     </Col>
                 </Row>
@@ -21,7 +21,7 @@ class Hero extends React.Component {
                         <h1>{this.props.title}</h1>
                     </Col>
                 </Row>
-            </Grid>
+            </Container>
         );
     }
 }
