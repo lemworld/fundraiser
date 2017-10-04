@@ -2,7 +2,7 @@ import React from 'react';
 
 import './ShareButtons.css';
 
-class ShareButtons extends  React.Component {
+class ShareButtons extends React.Component {
 
     getShareTargetURL() {
         return encodeURIComponent(window.location.href.split("?")[0]);

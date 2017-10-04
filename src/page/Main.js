@@ -19,8 +19,10 @@ class Main extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        <hr />
-                        <ShareButtons sharetext={this.props.sharetext} />
+                        <Col xs={12}>
+                            <hr />
+                            <ShareButtons sharetext={this.props.sharetext} />
+                        </Col>
                     </Row>
                 </Container>
             </div>
