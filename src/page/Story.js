@@ -9,7 +9,7 @@ class Story extends React.Component {
                 <div className="story">
                     <p>
                         {this.props.story.split("\n").map((item, index) => {
-                            return (index === 0) ? <span key={index}>{item}</span> : [<br/>, <span key={index}>{item}</span>]
+                            return (index === 0) ? <span id={index} key={index}>{item}</span> : <span id={index} key={index}><br/>{item}</span>
                         })}
                     </p>
                 </div>

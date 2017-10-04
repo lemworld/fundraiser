@@ -20,6 +20,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "moment": "^2.18.1",
+    "query-string": "^5.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-grid-system": "^2.9.6",

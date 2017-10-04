@@ -14,7 +14,7 @@ class CheckoutForm extends React.Component {
         super(props);
         this.handleStripeChargeChange = this.handleStripeChargeChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.state = {tester: "Loading...", fullname: "", emailaddress: "", personalMessage: "", showName: "public", errorfullname: false, erroremailaddress: false, paymentProcessing: false, errorPayment: "", paymentSuccess: false};
+        this.state = {fullname: "", emailaddress: "", personalMessage: "", showName: "public", errorfullname: false, erroremailaddress: false, paymentProcessing: false, errorPayment: "", paymentSuccess: false};
     }
 
     handleStripeChargeChange(newStatus) {

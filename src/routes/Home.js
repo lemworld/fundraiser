@@ -8,6 +8,9 @@ import Main from '../page/Main';
 import Footer from '../page/Footer';
 import ShareButtons from '../page/ShareButtons';
 
+// Utilities
+import queryString from 'query-string';
+
 // Application Constants
 import AppConstants from "../constants.js";
 
@@ -26,8 +29,8 @@ class Home extends Component {
         window.scrollTo(0,0);
 
         // Use the URLSearchParams API to see if we should display the Thank You modal
-        const query = new URLSearchParams(this.props.location.search);
-        this.setState({showThankYou: query.get('a') === "thank you"});
+        const query = queryString.parse(this.props.location.search);
+        this.setState({showThankYou: query.a === "thank you"});
 
         fetch(AppConstants.PAYMENT_SERVER_URL + "/api/donations/list/").then((response) => {
             response.json().then((data) => {
