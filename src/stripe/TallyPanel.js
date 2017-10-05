@@ -16,7 +16,7 @@ class TallyPanel extends React.Component {
     componentDidUpdate() {
         // Set focus to the donation input
         if (this.props.donationInputError) {
-            console.log("donationInputError");
+            console.log("Error: Invalid amount entered");
             this.focusDonationInput();
         }
 

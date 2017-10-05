@@ -22,12 +22,15 @@ class Donate extends Component {
 
     handleDonationAmountChange(donationNewAmount) {
 
-        if (isNaN(donationNewAmount) || donationNewAmount <= 0) {
-            this.setState({donationAmount: donationNewAmount, donationFees: 0.00, donationTotal: 0.00, donationInputError: true});
+        var newAmount = donationNewAmount;
+        newAmount = newAmount.replace(/,/g,''); // Remove any commas
+
+        if (isNaN(newAmount) || newAmount <= 0) {
+            this.setState({donationAmount: newAmount, donationFees: 0.00, donationTotal: 0.00, donationInputError: true});
         }
 
         else {
-            const donationAmount = parseFloat(donationNewAmount);
+            const donationAmount = parseFloat(newAmount);
             const donationFees = (donationAmount * 0.029) + 0.30;
             const donationTotal = donationAmount + donationFees;
             this.setState({donationAmount: donationAmount, donationFees: donationFees, donationTotal: donationTotal, donationInputError: false});
