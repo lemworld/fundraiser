@@ -8,8 +8,9 @@ class CardSection extends React.Component {
                 <label htmlFor="stripeCardElement">
                     Credit / Debit Card Details:
                 </label>
+                <p className="helptext">Card details are transmitted securely and we do not store them</p>
 
-                <CardElement id="stripeCardElement" style={{base: {fontSize: '18px'}}} />
+                <CardElement id="stripeCardElement" style={{base: {fontSize: '16px'}}} />
             </div>
 
         );

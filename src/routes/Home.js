@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import {Redirect} from 'react-router-dom';
 
 // Page Components
 import Hero from '../page/Hero';
@@ -19,7 +20,7 @@ const shareText = "Check this out: " + AppConstants.HERO_TITLE;
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {donationTotal: 0.00, donationCount: 0, donorList: {}, showThankYou: false};
+        this.state = {donationTotal: 0.00, donationCount: 0, donorList: {}, showThankYou: false, didShowThankYou: false};
         this.closeThankYouModal = this.closeThankYouModal.bind(this);
     }
 
@@ -45,10 +46,15 @@ class Home extends Component {
     }
 
     closeThankYouModal() {
-        this.setState({showThankYou: false});
+        this.setState({showThankYou: false, didShowThankYou: true});
     }
 
     render() {
+        if (this.state.didShowThankYou) {
+            return (
+                <Redirect to="/#" />
+            );
+        }
         return (
             <div>
                 <Modal

@@ -35,7 +35,7 @@
 
 .donationInputBox .currencySymbol {
     position: absolute;
-    top: 14px;
+    top: 11px;
     left: 15px;
     font-size: 20px;
     line-height: 20px;
@@ -47,6 +47,7 @@
 }
 
 .donationInputBox input {
+    box-sizing: border-box;
     font-size: 20px;
     padding-left: 35px;
     width: 100%;

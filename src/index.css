@@ -5,6 +5,7 @@ body {
     font-family: 'Lato', sans-serif;
     background-color: #FDFFFC;
     color: #4C4C4C;
+    font-size: 14px;
 }
 
 @media (max-width: 767px) {
@@ -95,6 +96,75 @@ label {
     font-weight: bold;
     letter-spacing: 0.025em;
     width: 100%;
+    display: inline-block;
+}
+
+hr {
+    height: 0;
+    box-sizing: content-box;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+a {
+    background-color: transparent;
+}
+
+a:active, a:hover {
+    outline: 0;
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #23527c;
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+h1 {
+    margin: .67em 0;
+    font-size: 2em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+input, select, textarea {
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box;
 }
 
 .thankYouModal {
