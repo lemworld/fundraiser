@@ -1,14 +1,14 @@
 # Fundraiser
 
-Fundraiser is a platform to raise funds with an easy and beautiful interface built with React, Express, and Node.
+Fundraiser is a platform to raise funds with an easy and beautiful interface. The only fees are those you pay to Stripe.
 
-Currently, data is stored in DynamoDB but could easily be adapted to any NoSQL platform that accepts JSON documents (like MongoDB).
+It is built with React, Express, and Node. Currently, data is stored in DynamoDB but could easily be adapted to any NoSQL platform that accepts JSON documents (like MongoDB). With some minor re-writes, it could use MySQL.
 
-> This project is still in active development so there may be many updates and possibly breaking changes to come
+> This project is still in active development, so there will be many updates and possibly breaking changes to come
 
 ## Purpose and Features
 
-In short, I wanted a way to raise funds for an important cause without paying more in fees than I had to. With Fundraiser, you pay only the Stripe fees (currently 2.9% + 30&cent; per transaction).
+In short, I needed a way to raise funds for an important cause without paying more than I had to in fees. With Fundraiser, you pay only the Stripe fees (currently 2.9% + 30&cent; per transaction).
 
 ### Features
 
@@ -105,6 +105,22 @@ npm start
 ## Technology
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+## Todo List
+
+It would be nice to build the following, to help future-proof Fundraiser and make it easier for anyone to deploy.
+
+* Admin interface, make it easier to:
+    * Set Stripe credentials
+    * Change the headline, story, and other text elements
+    * Manage donations (add, edit, delete)
+    * Manually add offline donations (e.g. check, cash)
+* Dynamically generate social media-related META tags
+* Add paging for the donations list when it grows beyond a certain length
+* Photo carousel or album at the top for displaying multiple photos
+* Create an area to add any required legal disclosures
+* Add to README any links to actual production uses of Fundraiser
+
 
 ## Contributing
 
