@@ -94,7 +94,7 @@ class Donate extends Component {
                         </Col>
                     </Row>
                 </Container>
-                <Footer />
+                <Footer beneficiary={AppConstants.FOOTER_BENEFICIARY} organization={AppConstants.FOOTER_ORGANIZATION} organization_subheading={AppConstants.FOOTER_ORGANIZATION_SUBHEADING} />
             </div>
         );
     }

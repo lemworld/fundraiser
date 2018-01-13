@@ -75,6 +75,7 @@ const AppConstants = {
     PAYMENT_SERVER_URL: "http://localhost:3001"
 };
 ```
+There are several other strings in this file you can edit to customize the site for your needs.
 
 4. Open the **server** constants file in your favorite text editor
 ```bash

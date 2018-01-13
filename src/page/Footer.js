@@ -6,9 +6,9 @@ class Footer extends React.Component {
         return (
             <footer>
                 <p>
-                    Primary beneficiary: Jack Ryan and Family<br />
-                    Children College Education Fund, LLC<br />
-                    A 501(c)(3) non-profit
+                    {this.props.beneficiary}<br />
+                    {this.props.organization}<br />
+                    {this.props.organization_subheading}
                 </p>
             </footer>
         );

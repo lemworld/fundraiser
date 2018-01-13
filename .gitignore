@@ -13,6 +13,7 @@
 
 # production
 /build
+/src/page/images
 
 # misc
 .DS_Store

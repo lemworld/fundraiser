@@ -1,6 +1,6 @@
 {
   "name": "fundraiser",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Lee Emmert (https://leeemmert.com)",
   "license": "MIT",
   "description": "Raise funds with an easy and beautiful interface built with React, Express, and Node",

@@ -51,9 +51,9 @@ class Home extends Component {
 
     render() {
         if (this.state.didShowThankYou) {
-            return (
+            /*return (
                 <Redirect to="/#" />
-            );
+            );*/
         }
         return (
             <div>
@@ -76,7 +76,7 @@ class Home extends Component {
                 </Modal>
                 <Hero title={AppConstants.HERO_TITLE} heroimage={heroimage} balance={this.state.donationTotal} donors={this.state.donationCount} />
                 <Main story={AppConstants.HOME_STORY} donors={this.state.donationCount} donorList={this.state.donorList} sharetext={shareText}></Main>
-                <Footer />
+                <Footer beneficiary={AppConstants.FOOTER_BENEFICIARY} organization={AppConstants.FOOTER_ORGANIZATION} organization_subheading={AppConstants.FOOTER_ORGANIZATION_SUBHEADING} />
             </div>
         );
     }
