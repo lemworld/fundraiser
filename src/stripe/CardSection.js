@@ -10,7 +10,7 @@ class CardSection extends React.Component {
                 </label>
                 <p className="helptext">Card details are transmitted securely and we do not store them</p>
 
-                <CardElement id="stripeCardElement" style={{base: {fontSize: '16px'}}} />
+                <CardElement onChange={this.props.onCardElementChange} style={{base: {fontSize: '16px'}}} />
             </div>
 
         );

@@ -50,9 +50,7 @@ class Home extends Component {
 
     render() {
         if (this.state.didShowThankYou) {
-            /*return (
-                <Redirect to="/#" />
-            );*/
+            /* TODO: It would be nice to get rid of the query string ?a=thank+you when the modal closes */
         }
         return (
             <div>

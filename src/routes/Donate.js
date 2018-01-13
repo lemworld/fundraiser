@@ -17,7 +17,7 @@ class Donate extends Component {
         super(props);
         this.handleDonationAmountChange = this.handleDonationAmountChange.bind(this);
         this.ourStripePublishableKey = AppConstants.STRIPE_TEST_MODE ? AppConstants.STRIPE_PK_TEST : AppConstants.STRIPE_PK_PROD;
-        this.state = {donationAmount: 0.00, donationFees: 0.00, donationTotal: 0.00, donationInputError: false, stripeLoaded: false};
+        this.state = {donationAmount: 0.00, donationFees: 0.00, donationTotal: 0.00, donationInputError: true, stripeLoaded: false};
     }
 
     handleDonationAmountChange(donationNewAmount) {
@@ -26,7 +26,7 @@ class Donate extends Component {
         newAmount = newAmount.replace(/,/g,''); // Remove any commas
 
         if (isNaN(newAmount) || newAmount <= 0) {
-            this.setState({donationAmount: newAmount, donationFees: 0.00, donationTotal: 0.00, donationInputError: true});
+            this.setState({donationAmount: 0, donationFees: 0.00, donationTotal: 0.00, donationInputError: true});
         }
 
         else {

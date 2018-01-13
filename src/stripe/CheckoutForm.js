@@ -12,13 +12,9 @@ import './CheckoutForm.css';
 class CheckoutForm extends React.Component {
     constructor(props) {
         super(props);
-        this.handleStripeChargeChange = this.handleStripeChargeChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.state = {fullname: "", emailaddress: "", personalMessage: "", showName: "public", errorfullname: false, erroremailaddress: false, paymentProcessing: false, errorPayment: "", paymentSuccess: false};
-    }
-
-    handleStripeChargeChange(newStatus) {
-
+        this.handleCardElementChange = this.handleCardElementChange.bind(this);
+        this.state = {fullname: "", emailaddress: "", personalMessage: "", showName: "public", errorfullname: false, erroremailaddress: false, cardElementComplete: false, paymentProcessing: false, errorPayment: "", paymentSuccess: false};
     }
 
     handleInputChange(event) {
@@ -29,8 +25,14 @@ class CheckoutForm extends React.Component {
 
         this.setState({
             [name]: value,
-            [stateErrorName]: false
+            [stateErrorName]: false,
+            paymentProcessing: false
         });
+    }
+
+    handleCardElementChange(event) {
+        console.log(event.complete);
+        this.setState({cardElementComplete: event.complete});
     }
 
     componentDidMount() {
@@ -109,6 +111,8 @@ class CheckoutForm extends React.Component {
             );
         }
 
+        const disablePaymentButton = this.state.paymentProcessing || this.props.donationInputError || !this.state.cardElementComplete;
+
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className="donationForm">
@@ -123,7 +127,6 @@ class CheckoutForm extends React.Component {
                         placeholder="Full Name"
                         ref={input => this.inputFullName = input}
                         onChange={this.handleInputChange} />
-
 
                     <label htmlFor="emailaddress">Email Address:</label>
                     <p className="helptext">We will send you a receipt for your records</p>
@@ -153,7 +156,7 @@ class CheckoutForm extends React.Component {
 
                     <hr />
 
-                    <CardSection />
+                    <CardSection onCardElementChange={this.handleCardElementChange} />
 
                     <input
                         name="chargeamount"
@@ -162,7 +165,7 @@ class CheckoutForm extends React.Component {
 
                     <div className="donationSubmit">
                         <p>We will charge your card for this amount: {this.props.totalChargeAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-                        <button className="donate" disabled={this.state.paymentProcessing}>Make Donation</button>
+                        <button className="donate" disabled={disablePaymentButton}>Make Donation</button>
                         <p className="error">{this.state.errorPayment}</p>
                     </div>
 
