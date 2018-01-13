@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-import {Redirect} from 'react-router-dom';
 
 // Page Components
 import Hero from '../page/Hero';

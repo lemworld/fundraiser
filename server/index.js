@@ -79,7 +79,7 @@ app.post("/api/donations/new/", (req, res) => {
     .then(customer =>
         stripe.charges.create({
             amount,
-            description: "Test Donation",
+            description: "Donation",
             currency: "usd",
             customer: customer.id
     }))
@@ -120,5 +120,5 @@ app.post("/api/donations/new/", (req, res) => {
 
 
 app.listen(3001, function () {
-    console.log("App listening on port 3001");
+    console.log("Fundraiser Server listening on port 3001");
 });

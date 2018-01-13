@@ -1,7 +1,7 @@
 {
   "short_name": "Fundraiser",
   "name": "Fundraiser",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Lee Emmert",
   "description": "Raise funds with an easy and beautiful interface built with React, Express, and Node",
   "homepage_url": "https://github.com/lemworld/fundraiser",
