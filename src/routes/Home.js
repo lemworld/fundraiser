@@ -3,7 +3,6 @@ import Modal from 'react-modal';
 
 // Page Components
 import Hero from '../page/Hero';
-import heroimage from '../page/karl-fredrickson-192686.jpg';
 import Main from '../page/Main';
 import Footer from '../page/Footer';
 import ShareButtons from '../page/ShareButtons';
@@ -15,6 +14,8 @@ import queryString from 'query-string';
 import AppConstants from "../constants.js";
 
 const shareText = "Check this out: " + AppConstants.HERO_TITLE;
+
+const heroimage = AppConstants.HERO_IMAGE;
 
 class Home extends Component {
     constructor(props) {
@@ -72,7 +73,7 @@ class Home extends Component {
 
                 </Modal>
                 <Hero title={AppConstants.HERO_TITLE} heroimage={heroimage} balance={this.state.donationTotal} donors={this.state.donationCount} />
-                <Main story={AppConstants.HOME_STORY} donors={this.state.donationCount} donorList={this.state.donorList} sharetext={shareText}></Main>
+                <Main story={AppConstants.HOME_STORY} story_html={AppConstants.HOME_STORY_HTML} story_use_html={AppConstants.HOME_STORY_USE_HTML} donors={this.state.donationCount} donorList={this.state.donorList} sharetext={shareText}></Main>
                 <Footer beneficiary={AppConstants.FOOTER_BENEFICIARY} organization={AppConstants.FOOTER_ORGANIZATION} organization_subheading={AppConstants.FOOTER_ORGANIZATION_SUBHEADING} />
             </div>
         );

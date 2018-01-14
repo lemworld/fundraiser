@@ -12,7 +12,7 @@ class Main extends React.Component {
                 <Container>
                     <Row>
                         <Col xs={12} md={8} className="titleCol">
-                            <Story story={this.props.story} donors={this.props.donors} />
+                            <Story story={this.props.story} story_html={this.props.story_html} story_use_html={this.props.story_use_html} donors={this.props.donors} />
                         </Col>
                         <Col xs={12} md={4}>
                             <DonorList donors={this.props.donors} donorList={this.props.donorList} />

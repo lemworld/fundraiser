@@ -31,7 +31,6 @@ class CheckoutForm extends React.Component {
     }
 
     handleCardElementChange(event) {
-        console.log(event.complete);
         this.setState({cardElementComplete: event.complete});
     }
 

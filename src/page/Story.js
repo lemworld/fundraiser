@@ -7,11 +7,15 @@ class Story extends React.Component {
         return (
             <div className="storyContainer">
                 <div className="story">
-                    <p>
-                        {this.props.story.split("\n").map((item, index) => {
-                            return (index === 0) ? <span id={index} key={index}>{item}</span> : <span id={index} key={index}><br/>{item}</span>
-                        })}
-                    </p>
+                    {this.props.story_use_html ? (
+                        <div dangerouslySetInnerHTML={{__html: this.props.story_html}} />
+                    ) : (
+                        <p>
+                            {this.props.story.split("\n").map((item, index) => {
+                                return (index === 0) ? <span id={index} key={index}>{item}</span> : <span id={index} key={index}><br/>{item}</span>
+                            })}
+                        </p>
+                    )}
                 </div>
             </div>
         );

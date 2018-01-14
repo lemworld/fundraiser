@@ -8,7 +8,7 @@
 }
 
 @media (min-width: 768px) {
-    .story p {
+    .story p, .story h1, .story h2, .story img {
         padding-left: 20px;
         padding-right: 40px;
     }
