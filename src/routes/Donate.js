@@ -31,8 +31,8 @@ class Donate extends Component {
 
         else {
             const donationAmount = parseFloat(newAmount);
-            const donationFees = (donationAmount * 0.029) + 0.30;
-            const donationTotal = donationAmount + donationFees;
+            const donationTotal = (donationAmount + 0.30) / (1 - 0.029);
+            const donationFees = (donationTotal * 0.029) + 0.30;
             this.setState({donationAmount: donationAmount, donationFees: donationFees, donationTotal: donationTotal, donationInputError: false});
         }
     }
