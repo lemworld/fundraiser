@@ -105,7 +105,10 @@ npm start
 
 ## Technology
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+* Bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app)
+* Graduation cap favicon comes from [icons8](https://icons8.com/icon/1538/graduation-cap)
+* Stripe integration via [react-stripe-elements](https://github.com/stripe/react-stripe-elements)
+
 
 ## Todo List
 
